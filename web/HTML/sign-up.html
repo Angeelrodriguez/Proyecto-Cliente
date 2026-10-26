@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Codificación de caracteres: permite tildes y la ñ -->
   <meta charset="UTF-8">
+  <!-- Hace la página adaptable a móviles (diseño responsive) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Sign In and Sign Up Application</title>
+  <!-- Hoja de estilos externa: todo el aspecto (CSS) está separado del contenido (HTML) -->
   <link rel="stylesheet" href="/Proyecto_Cliente/CSS/styles.css">
 </head>
 <body>
+  <!-- Contenedor principal: centra la tarjeta en la pantalla (.page) -->
   <main class="page">
+    <!-- Tarjeta del formulario (sin "narrow": es más ancha que la de sign-in) -->
     <div class="card">
+
+      <!-- Cabecera: logo y título de la aplicación -->
       <div class="brand">
         <div class="logo">SA</div>
         <div>
@@ -17,13 +24,20 @@
         </div>
       </div>
 
+      <!-- Pestañas de navegación. La clase "active" marca la página actual (Crear cuenta) -->
       <nav class="tabs">
         <a href="sign-in.html">Iniciar sesión</a>
         <a href="sign-up.html" class="active">Crear cuenta</a>
       </nav>
 
+      <!-- Formulario de registro.
+           Por ahora envía a sign-in.html con method="get"; se sustituirá por JS
+           cuando se conecte con el servidor -->
       <form action="sign-in.html" method="get">
+
+        <!-- Sección 1: datos personales -->
         <div class="section">Datos personales</div>
+        <!-- Fila de 3 columnas (nombre, apellido, inicial), definida en CSS con .row-name -->
         <div class="row row-name">
           <div class="field">
             <label for="firstName">First name</label>
@@ -35,15 +49,18 @@
           </div>
           <div class="field">
             <label for="middleInitial">M.I.</label>
+            <!-- Inicial opcional: máximo 1 carácter y solo letras (pattern) -->
             <input type="text" id="middleInitial" name="middleInitial" placeholder="A" maxlength="1" pattern="[A-Za-z]">
           </div>
         </div>
 
+        <!-- Sección 2: dirección -->
         <div class="section">Dirección</div>
         <div class="field">
           <label for="street">Street</label>
           <input type="text" id="street" name="street" placeholder="123 Main St" required>
         </div>
+        <!-- Fila de 3 columnas (ciudad, estado, código postal), definida con .row-city -->
         <div class="row row-city">
           <div class="field">
             <label for="city">City</label>
@@ -55,35 +72,51 @@
           </div>
           <div class="field">
             <label for="zip">ZIP</label>
+            <!-- ZIP: exactamente 5 dígitos. inputmode="numeric" abre el teclado numérico en móviles;
+                 title es el mensaje que se muestra si no cumple el pattern -->
             <input type="text" id="zip" name="zip" placeholder="62701" inputmode="numeric" pattern="[0-9]{5}" title="5 dígitos" required>
           </div>
         </div>
 
+        <!-- Sección 3: datos de la cuenta -->
         <div class="section">Cuenta</div>
+        <!-- Cuadrícula de 2 columnas (.row-2) -->
         <div class="row row-2">
           <div class="field">
             <label for="phone">Phone</label>
+            <!-- Teléfono: solo dígitos, entre 7 y 15 -->
             <input type="tel" id="phone" name="phone" placeholder="5551234567" pattern="[0-9]{7,15}" title="Solo dígitos (7–15)" required>
           </div>
           <div class="field">
             <label for="email">Email</label>
+            <!-- type="email" valida el formato del correo -->
             <input type="email" id="email" name="email" placeholder="tu@email.com" required>
           </div>
           <div class="field">
             <label for="password">Password</label>
+            <!-- Contraseña: mínimo 8 caracteres (minlength) -->
             <input type="password" id="password" name="password" placeholder="Min. 8 caracteres" minlength="8" required>
           </div>
           <div class="field">
             <label for="confirm">Confirmar password</label>
+            <!-- Repetición de la contraseña. Que coincida con la anterior
+                 se comprobará con JS, el HTML por sí solo no puede hacerlo -->
             <input type="password" id="confirm" name="confirm" placeholder="••••••••" minlength="8" required>
           </div>
         </div>
 
+        <!-- Casilla obligatoria: no se puede enviar sin aceptar los términos -->
         <label class="check"><input type="checkbox" name="terms" required> Acepto los términos y condiciones</label>
+        <!-- Botón de envío del formulario -->
         <button type="submit" class="btn">Crear cuenta</button>
+        <!-- Enlace para quien ya tiene cuenta -->
         <div class="footer">¿Ya tienes cuenta? <a href="sign-in.html">Inicia sesión</a></div>
       </form>
     </div>
   </main>
+
+  <!-- Script de comportamiento (JS), cargado como módulo para usar import/export.
+       Descomenta esta línea cuando exista JS/sign-up.js:
+  <script type="module" src="/Proyecto_Cliente/JS/sign-up.js"></script> -->
 </body>
 </html>
