@@ -1,50 +1,110 @@
+/* ==========================================================
+   styles.css - Sign In and Sign Up Application
+   Aspecto de las páginas sign-in.html y sign-up.html.
+   (El contenido está en el HTML y el comportamiento irá en JS.)
+   ========================================================== */
+
+/* Fuente Nunito de Google Fonts, con los pesos 400, 600, 700 y 800.
+   display=swap muestra una fuente alternativa mientras carga */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
 
+/* ---------- Base ---------- */
+
+/* box-sizing: border-box hace que el padding y el borde cuenten dentro del width */
 * { box-sizing: border-box; }
+/* Fondo gris claro, texto oscuro y fuente Nunito (con sans-serif de reserva) */
 body { margin: 0; font-family: 'Nunito', sans-serif; background: #f4f5fa; color: #2a2d3e; }
+/* Enlaces: color corporativo, en negrita y sin subrayado; se oscurecen al pasar el ratón */
 a { color: #4a52c9; font-weight: 700; text-decoration: none; }
 a:hover { color: #3a41b0; }
 
+/* ---------- Estructura de la página ---------- */
+
+/* .page ocupa toda la altura de la ventana y centra la tarjeta
+   horizontal y verticalmente con flexbox */
 .page { min-height: 100vh; padding: 40px 20px; display: flex; justify-content: center; align-items: center; }
+/* .card es la tarjeta blanca con borde, esquinas redondeadas y sombra.
+   Apila su contenido en columna con 24px de separación */
 .card { width: 100%; max-width: 440px; background: #fff; border: 1px solid #e3e5ee; border-radius: 16px; padding: 40px; box-shadow: 0 1px 2px rgba(40,45,80,.06), 0 12px 32px rgba(40,45,80,.08); display: flex; flex-direction: column; gap: 24px; }
+/* Variante estrecha usada en sign-in (ahora mismo con el mismo ancho que .card) */
 .card.narrow { max-width: 440px; }
 
+/* ---------- Cabecera (logo y título) ---------- */
+
+/* Logo y texto en fila, alineados verticalmente */
 .brand { display: flex; align-items: center; gap: 14px; }
+/* Cuadrado con las iniciales "SA"; flex-shrink: 0 evita que se encoja */
 .logo { width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px; background: #4a52c9; color: #fff; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+/* Nombre de la aplicación: pequeño, en mayúsculas y con letras separadas */
 .brand-name { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #4a52c9; }
+/* Título principal de cada página */
 .brand h1 { margin: 2px 0 0; font-size: 28px; font-weight: 800; line-height: 1.15; }
 
+/* ---------- Pestañas (Iniciar sesión / Crear cuenta) ---------- */
+
+/* Dos columnas iguales con grid, sobre una barra gris redondeada */
 .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: #eef0f6; border-radius: 12px; }
+/* Cada pestaña es un enlace centrado y en gris */
 .tabs a { padding: 10px; border-radius: 9px; font-size: 15px; text-align: center; color: #6b6f85; }
 .tabs a:hover { color: #2a2d3e; }
+/* La pestaña activa (página actual) se resalta con fondo blanco y sombra suave */
 .tabs a.active { background: #fff; color: #2a2d3e; box-shadow: 0 1px 3px rgba(40,45,80,.12); }
 
+/* ---------- Formulario ---------- */
+
+/* Los campos se apilan en columna con 14px de separación */
 form { display: flex; flex-direction: column; gap: 14px; }
+/* Título de sección ("Datos personales", "Dirección", "Cuenta") con línea inferior */
 .section { margin-top: 8px; padding-bottom: 8px; border-bottom: 1px solid #e8eaf1; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #6b6f85; }
+/* Si la sección es el primer elemento del formulario, no necesita margen superior */
 .section:first-child { margin-top: 0; }
+/* .row es una fila en cuadrícula; cada variante define sus columnas */
 .row { display: grid; gap: 12px; }
+/* Nombre, apellido y inicial (la inicial ocupa solo 72px) */
 .row-name { grid-template-columns: minmax(0,1fr) minmax(0,1fr) 72px; }
+/* Ciudad (doble de ancha), estado y código postal.
+   minmax(0, ...) evita que los inputs desborden la cuadrícula */
 .row-city { grid-template-columns: minmax(0,2fr) minmax(0,1fr) minmax(0,1fr); }
+/* Dos columnas iguales (teléfono/email y contraseñas) */
 .row-2 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
 
+/* ---------- Campos (etiqueta + input) ---------- */
+
+/* Etiqueta encima del input; min-width: 0 permite que el campo se reduzca en la cuadrícula */
 .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .field label { font-size: 14px; font-weight: 600; }
+/* Input a todo el ancho; font: inherit hace que use la fuente Nunito de la página */
 .field input { width: 100%; padding: 11px 13px; border: 1px solid #d6d9e4; border-radius: 10px; font: inherit; font-size: 15px; background: #fff; color: inherit; }
 .field input::placeholder { color: #9a9db0; }
+/* Al enfocar: se quita el contorno del navegador y se pone un borde y halo propios */
 .field input:focus { outline: none; border-color: #4a52c9; box-shadow: 0 0 0 3px rgba(74,82,201,.18); }
+/* Borde rojo cuando el usuario ya ha escrito un valor no válido
+   (:user-invalid solo se activa tras interactuar con el campo) */
 .field input:user-invalid { border-color: #d0453a; }
 
+/* ---------- Opciones, casillas y botón ---------- */
+
+/* Fila "Recuérdame" + "¿Olvidaste tu contraseña?", con salto de línea si no caben */
 .options { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14px; }
+/* Casilla con su texto alineados; el cursor indica que es clicable */
 .check { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+/* accent-color pinta la casilla con el color corporativo */
 .check input { width: 18px; height: 18px; accent-color: #4a52c9; }
 
+/* Botón principal a todo el ancho, con tres estados: normal, hover y pulsado */
 .btn { width: 100%; margin-top: 6px; padding: 14px; border: none; border-radius: 10px; background: #4a52c9; color: #fff; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; }
 .btn:hover { background: #3f47bb; }
 .btn:active { background: #353ca3; }
+/* Accesibilidad: contorno visible al navegar con teclado (Tab) por el botón y las pestañas */
 .btn:focus-visible, .tabs a:focus-visible { outline: 3px solid rgba(74,82,201,.45); outline-offset: 2px; }
 
+/* Texto final con el enlace a la otra página */
 .footer { text-align: center; font-size: 15px; }
 
+/* ---------- Responsive ---------- */
+
+/* En pantallas de 520px o menos (móviles): menos padding en la tarjeta
+   y todas las filas pasan a una sola columna */
 @media (max-width: 520px) {
   .card { padding: 28px 20px; }
   .row-name, .row-city, .row-2 { grid-template-columns: 1fr; }
