@@ -29,7 +29,8 @@
         <a href="sign-in.html">Iniciar sesión</a>
         <a href="sign-up.html" class="active">Crear cuenta</a>
       </nav>
-
+       <div id="successMessage" class="message ok" hidden></div>
+      <div id="formError" class="message" role="alert" hidden></div>
       <!-- Formulario de registro.
            Por ahora envía a sign-in.html con method="get"; se sustituirá por JS
            cuando se conecte con el servidor -->
@@ -108,15 +109,13 @@
         <!-- Casilla obligatoria: no se puede enviar sin aceptar los términos -->
         <label class="check"><input type="checkbox" name="terms" required> Acepto los términos y condiciones</label>
         <!-- Botón de envío del formulario -->
-        <button type="submit" class="btn">Crear cuenta</button>
+        <button type="submit" class="btn signup-btn">Crear cuenta</button>
         <!-- Enlace para quien ya tiene cuenta -->
         <div class="footer">¿Ya tienes cuenta? <a href="sign-in.html">Inicia sesión</a></div>
       </form>
     </div>
   </main>
 
-  <!-- Script de comportamiento (JS), cargado como módulo para usar import/export.
-       Descomenta esta línea cuando exista JS/sign-up.js:
-  <script type="module" src="/Proyecto_Cliente/JS/sign-up.js"></script> -->
+   <script src="/Proyecto_Cliente/JS/controllerSignUp.js"></script>
 </body>
 </html>

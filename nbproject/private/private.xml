@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/web/HTML/signin.html</file>
             <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/src/java/entities/User.java</file>
+            <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/web/HTML/sign-in.html</file>
+            <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/web/HTML/sign-up.html</file>
+            <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/web/CSS/styles.css</file>
+            <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/web/index.html</file>
+            <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/web/JS/user.js</file>
+            <file>file:/C:/Users/madrid/Documents/NetBeansProjects/Proyecto-Cliente/web/JS/testClass.js</file>
         </group>
     </open-files>
 </project-private>
