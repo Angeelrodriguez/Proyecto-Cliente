@@ -14,7 +14,7 @@
   <main class="page">
     <!-- Tarjeta del formulario (sin "narrow": es más ancha que la de sign-in) -->
     <div class="card">
-
+ 
       <!-- Cabecera: logo y título de la aplicación -->
       <div class="brand">
         <div class="logo">SA</div>
@@ -23,19 +23,23 @@
           <h1>Crea tu cuenta</h1>
         </div>
       </div>
-
+ 
       <!-- Pestañas de navegación. La clase "active" marca la página actual (Crear cuenta) -->
       <nav class="tabs">
         <a href="sign-in.html">Iniciar sesión</a>
         <a href="sign-up.html" class="active">Crear cuenta</a>
       </nav>
-       <div id="successMessage" class="message ok" hidden></div>
+ 
+      <!-- Mensajes generales: éxito y error del servidor (los gestiona el JS) -->
+      <div id="successMessage" class="message ok" hidden></div>
       <div id="formError" class="message" role="alert" hidden></div>
+ 
       <!-- Formulario de registro.
-           Por ahora envía a sign-in.html con method="get"; se sustituirá por JS
-           cuando se conecte con el servidor -->
-      <form action="sign-in.html" method="get">
-
+           novalidate: desactiva los avisos del navegador para que los errores
+           los muestre controllerSignUp.js. Las reglas (required, pattern...) se siguen
+           leyendo de los atributos. El envío lo hace el JS con fetch, por eso no hay action -->
+      <form id="signupForm" novalidate>
+ 
         <!-- Sección 1: datos personales -->
         <div class="section">Datos personales</div>
         <!-- Fila de 3 columnas (nombre, apellido, inicial), definida en CSS con .row-name -->
@@ -51,10 +55,10 @@
           <div class="field">
             <label for="middleInitial">M.I.</label>
             <!-- Inicial opcional: máximo 1 carácter y solo letras (pattern) -->
-            <input type="text" id="middleInitial" name="middleInitial" placeholder="A" maxlength="1" pattern="[A-Za-z]">
+            <input type="text" id="middleInitial" name="middleInitial" placeholder="A" maxlength="1" pattern="[A-Za-z]" title="Una sola letra">
           </div>
         </div>
-
+ 
         <!-- Sección 2: dirección -->
         <div class="section">Dirección</div>
         <div class="field">
@@ -78,7 +82,7 @@
             <input type="text" id="zip" name="zip" placeholder="62701" inputmode="numeric" pattern="[0-9]{5}" title="5 dígitos" required>
           </div>
         </div>
-
+ 
         <!-- Sección 3: datos de la cuenta -->
         <div class="section">Cuenta</div>
         <!-- Cuadrícula de 2 columnas (.row-2) -->
@@ -101,13 +105,13 @@
           <div class="field">
             <label for="confirm">Confirmar password</label>
             <!-- Repetición de la contraseña. Que coincida con la anterior
-                 se comprobará con JS, el HTML por sí solo no puede hacerlo -->
+                 lo comprueba el JS, el HTML por sí solo no puede hacerlo -->
             <input type="password" id="confirm" name="confirm" placeholder="••••••••" minlength="8" required>
           </div>
         </div>
-
+ 
         <!-- Casilla obligatoria: no se puede enviar sin aceptar los términos -->
-        <label class="check"><input type="checkbox" name="terms" required> Acepto los términos y condiciones</label>
+        <label class="check"><input type="checkbox" id="terms" name="terms" required> Acepto los términos y condiciones</label>
         <!-- Botón de envío del formulario -->
         <button type="submit" class="btn signup-btn">Crear cuenta</button>
         <!-- Enlace para quien ya tiene cuenta -->
@@ -115,7 +119,8 @@
       </form>
     </div>
   </main>
-
-   <script src="/Proyecto_Cliente/JS/controllerSignUp.js"></script>
+ 
+     <script src="/Proyecto_Cliente/JS/controllerSignUp.js" charset="UTF-8"></script>
 </body>
 </html>
+ 
