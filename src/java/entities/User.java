@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entities;
-
+ 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +18,7 @@ import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.math.BigInteger;
-
+ 
 /**
  *
  * @author madrid
@@ -40,13 +40,12 @@ import java.math.BigInteger;
     @NamedQuery(name = "User.findByState", query = "SELECT u FROM User u WHERE u.state = :state"),
     @NamedQuery(name = "User.findByStreet", query = "SELECT u FROM User u WHERE u.street = :street")})
 public class User implements Serializable {
-
+ 
     private static final long serialVersionUID = 1L;
     @Column(name = "zip")
     private Integer zip;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)   // el id lo genera MySQL (AUTO_INCREMENT)
     @Column(name = "id")
     private Long id;
     @Column(name = "phone")
@@ -76,109 +75,109 @@ public class User implements Serializable {
     @Size(max = 255)
     @Column(name = "street")
     private String street;
-
+ 
     public User() {
     }
-
+ 
     public User(Long id) {
         this.id = id;
     }
-
+ 
     public Integer getZip() {
         return zip;
     }
-
+ 
     public void setZip(Integer zip) {
         this.zip = zip;
     }
-
+ 
     public Long getId() {
         return id;
     }
-
+ 
     public void setId(Long id) {
         this.id = id;
     }
-
+ 
     public BigInteger getPhone() {
         return phone;
     }
-
+ 
     public void setPhone(BigInteger phone) {
         this.phone = phone;
     }
-
+ 
     public String getCity() {
         return city;
     }
-
+ 
     public void setCity(String city) {
         this.city = city;
     }
-
+ 
     public String getEmail() {
         return email;
     }
-
+ 
     public void setEmail(String email) {
         this.email = email;
     }
-
+ 
     public String getFirstName() {
         return firstName;
     }
-
+ 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
+ 
     public String getLastName() {
         return lastName;
     }
-
+ 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+ 
     public String getMiddleInitial() {
         return middleInitial;
     }
-
+ 
     public void setMiddleInitial(String middleInitial) {
         this.middleInitial = middleInitial;
     }
-
+ 
     public String getPassword() {
         return password;
     }
-
+ 
     public void setPassword(String password) {
         this.password = password;
     }
-
+ 
     public String getState() {
         return state;
     }
-
+ 
     public void setState(String state) {
         this.state = state;
     }
-
+ 
     public String getStreet() {
         return street;
     }
-
+ 
     public void setStreet(String street) {
         this.street = street;
     }
-
+ 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+ 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -191,7 +190,7 @@ public class User implements Serializable {
         }
         return true;
     }
-
+ 
     @Override
     public String toString() {
         return "entities.User[ id=" + id + " ]";
