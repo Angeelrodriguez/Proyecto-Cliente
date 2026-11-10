@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depósitos y pagos</title>
+  <link rel="stylesheet" href="/Proyecto_Cliente/CSS/styles.css">
+  <!-- Estilos propios de esta página (así no tocamos styles.css, que comparte todo el equipo) -->
+  <style>
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px;
+      margin: 22px 0;
+      border: 1px solid #e4e6f0;
+      border-radius: 14px;
+      background: #f7f8fd;
+    }
+    .avatar {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #4a4fc7;
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .profile-name { font-weight: 700; font-size: 1.05rem; }
+    .profile-email { color: #6b7280; font-size: 0.95rem; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="card narrow">
+
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div>
+          <span class="brand-name">Sign In and Sign Up Application</span>
+          <h1 id="saludo">Bienvenido</h1>
+        </div>
+      </div>
+
+      <div class="message ok">Has iniciado sesión correctamente.</div>
+
+      <!-- Tarjeta con los datos del usuario que inició sesión -->
+      <div class="profile">
+        <div class="avatar" id="avatar"></div>
+        <div>
+          <div class="profile-name" id="nombre"></div>
+          <div class="profile-email" id="email"></div>
+        </div>
+      </div>
+
+      <button type="button" class="btn" id="logoutBtn">Cerrar sesión</button>
+    </div>
+  </main>
+
+  <script>
+    // El controlador de login guarda los datos del usuario en sessionStorage
+    function getUser() {
+      try { return JSON.parse(sessionStorage.getItem('currentUser')); }
+      catch (e) { return null; }
+    }
+
+    function render() {
+      const user = getUser();
+      if (!user) {
+        // Sin sesión: de vuelta al login (replace evita que "atrás" vuelva aquí)
+        window.location.replace('sign-in.html');
+        return;
+      }
+      // textContent (y no innerHTML) para no ejecutar nada raro que venga de la base de datos
+      document.getElementById('saludo').textContent = 'Hola, ' + user.firstName;
+      document.getElementById('nombre').textContent = user.firstName + ' ' + user.lastName;
+      document.getElementById('email').textContent = user.email;
+      document.getElementById('avatar').textContent =
+        ((user.firstName || '?')[0] + (user.lastName || '')[0]).toUpperCase();
+    }
+
+    // pageshow salta al cargar y también al volver con el botón "atrás" del navegador
+    window.addEventListener('pageshow', render);
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      sessionStorage.removeItem('currentUser');   // cierra la sesión
+      window.location.href = 'sign-in.html';
+    });
+  </script>
+</body>
+</html>
