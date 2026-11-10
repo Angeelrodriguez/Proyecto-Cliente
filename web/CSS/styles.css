@@ -1,7 +1,7 @@
 /* ==========================================================
    styles.css - Sign In and Sign Up Application
    Aspecto de las páginas sign-in.html y sign-up.html.
-   (El contenido está en el HTML y el comportamiento irá en JS.)
+   (El contenido está en el HTML y el comportamiento en JS.)
    ========================================================== */
 
 /* Fuente Nunito de Google Fonts, con los pesos 400, 600, 700 y 800.
@@ -17,6 +17,9 @@ body { margin: 0; font-family: 'Nunito', sans-serif; background: #f4f5fa; color:
 /* Enlaces: color corporativo, en negrita y sin subrayado; se oscurecen al pasar el ratón */
 a { color: #4a52c9; font-weight: 700; text-decoration: none; }
 a:hover { color: #3a41b0; }
+/* El atributo hidden debe ganar siempre: sin esto, reglas como .message o .error
+   (que definen display) podrían dejar visibles elementos con hidden */
+[hidden] { display: none !important; }
 
 /* ---------- Estructura de la página ---------- */
 
@@ -50,6 +53,12 @@ a:hover { color: #3a41b0; }
 /* La pestaña activa (página actual) se resalta con fondo blanco y sombra suave */
 .tabs a.active { background: #fff; color: #2a2d3e; box-shadow: 0 1px 3px rgba(40,45,80,.12); }
 
+/* ---------- Mensajes generales (error y éxito del envío) ---------- */
+
+/* Caja de aviso: por defecto es de error (rojo); con .ok pasa a verde */
+.message { padding: 12px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; background: #fdecea; color: #b3322a; }
+.message.ok { background: #e7f6ec; color: #1f7a3d; }
+
 /* ---------- Formulario ---------- */
 
 /* Los campos se apilan en columna con 14px de separación */
@@ -78,9 +87,11 @@ form { display: flex; flex-direction: column; gap: 14px; }
 .field input::placeholder { color: #9a9db0; }
 /* Al enfocar: se quita el contorno del navegador y se pone un borde y halo propios */
 .field input:focus { outline: none; border-color: #4a52c9; box-shadow: 0 0 0 3px rgba(74,82,201,.18); }
-/* Borde rojo cuando el usuario ya ha escrito un valor no válido
-   (:user-invalid solo se activa tras interactuar con el campo) */
-.field input:user-invalid { border-color: #d0453a; }
+/* Campo no válido: la clase .invalid la pone el JS (controllerSignUp.js) */
+.field input.invalid { border-color: #d0453a; }
+.field input.invalid:focus { box-shadow: 0 0 0 3px rgba(208,69,58,.18); }
+/* Texto de error bajo cada campo (lo crea y muestra el JS) */
+.error { color: #d0453a; font-size: 13px; font-weight: 600; }
 
 /* ---------- Opciones, casillas y botón ---------- */
 
@@ -95,6 +106,8 @@ form { display: flex; flex-direction: column; gap: 14px; }
 .btn { width: 100%; margin-top: 6px; padding: 14px; border: none; border-radius: 10px; background: #4a52c9; color: #fff; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; }
 .btn:hover { background: #3f47bb; }
 .btn:active { background: #353ca3; }
+/* Botón bloqueado mientras se espera la respuesta del servidor */
+.btn:disabled { opacity: .6; cursor: not-allowed; }
 /* Accesibilidad: contorno visible al navegar con teclado (Tab) por el botón y las pestañas */
 .btn:focus-visible, .tabs a:focus-visible { outline: 3px solid rgba(74,82,201,.45); outline-offset: 2px; }
 

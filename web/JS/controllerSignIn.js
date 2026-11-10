@@ -109,6 +109,8 @@ class SignInFormController {
         const emailOk = this.validateEmail();
         const passwordOk = this.validatePassword();
         if (!emailOk || !passwordOk) {
+            // el foco va al primer campo incorrecto (igual que en sign-up)
+            (emailOk ? this.passwordInput : this.emailInput).focus();
             return;
         }
 
