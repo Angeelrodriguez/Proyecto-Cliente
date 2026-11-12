@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 public class UserServlet extends HttpServlet {
 
     private static final String URL  = "jdbc:mysql://localhost:3306/signdb?allowPublicKeyRetrieval=true&useSSL=false";
-    private static final String USER = "signin_user";
-    private static final String PASS = "Aiman2026";
+    private static final String USER = "root";
+    private static final String PASS = "Cmadrid";
 
     private Connection getConnection() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
