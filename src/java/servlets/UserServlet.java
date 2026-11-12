@@ -14,9 +14,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
-
+    //FIXME Do not use an URL hardcoded use a properties file
     private static final String URL  = "jdbc:mysql://localhost:3306/signdb?allowPublicKeyRetrieval=true&useSSL=false";
+    //FIXME Do not use an USER hardcoded use a properties file
     private static final String USER = "signin_user";
+    //FIXME Do not use an PASS hardcoded use a properties file
     private static final String PASS = "Aiman2026";
 
     private Connection getConnection() throws Exception {
@@ -56,6 +58,7 @@ public class UserServlet extends HttpServlet {
                         }
                     }
                 }
+            //TODO Delete this comment because it seems that an AI is doing this
             // Aquí tu compañero puede añadir su acción: } else if ("register".equals(action)) { ... }
             } else {
                 resp.setStatus(400);
