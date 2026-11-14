@@ -166,7 +166,8 @@ class SignUpFormController {
     // ---------- Envío ----------
 
     /**
-     * Envío del formulario: valida todo y lo guarda en la base de datos.
+     * Envío del formulario: valida y guarda en la base de datos.
+     * @todo: Después de un signup exitoso guardar en el sessionStorage el email para que lo cargue la página de sigIn.
      * @param {Event} e
      */
     async handleSubmit(e) {
@@ -217,7 +218,11 @@ class SignUpFormController {
         }
     }
 
-    /** Construye el XML <user> con los datos del formulario. */
+    /** Construye el XML <user> con los datos del formulario. 
+     * @todo: Usar un objeto User para encapsular los datos del nuevo usuario antes 
+     *          de registrarlo en lugar de la variable data.
+     * @returns {String}
+     */
     buildXml() {
         const value = (name) => this.form.elements[name].value.trim();
         const data = {

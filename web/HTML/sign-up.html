@@ -6,7 +6,7 @@
   <!-- Hace la página adaptable a móviles (diseño responsive) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Sign In and Sign Up Application</title>
-  <!-- Hoja de estilos externa: todo el aspecto (CSS) está separado del contenido (HTML) -->
+  <!-- Hoja de estilos externa: el aspecto (CSS) está separado del contenido (HTML) -->
   <link rel="stylesheet" href="/Proyecto_Cliente/CSS/styles.css">
 </head>
 <body>
@@ -95,6 +95,7 @@
           <div class="field">
             <label for="email">Email</label>
             <!-- type="email" valida el formato del correo -->
+            <!-- TODO validar email utilizando la misma expresión regular que se utilice en el sign in.-->
             <input type="email" id="email" name="email" placeholder="tu@email.com" required>
           </div>
           <div class="field">
@@ -119,8 +120,8 @@
       </form>
     </div>
   </main>
- 
-     <script src="/Proyecto_Cliente/JS/controllerSignUp.js" charset="UTF-8"></script>
+    <!--TODO: usar controlador JS como módulo-->    
+    <script src="/Proyecto_Cliente/JS/controllerSignUp.js" charset="UTF-8"></script>
 </body>
 </html>
  
