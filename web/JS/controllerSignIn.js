@@ -98,6 +98,16 @@ class SignInFormController {
 
     /**
      * Envío del formulario: valida los campos e inicia sesión.
+     * @todo Enviar petición GET al servicio RESTful /Proyecto_Cliente/webresources/entities.user 
+     *       y procesar la respuesta para permitir o no el Sign In.
+     * @todo Crear un objeto de la clase User para encapsular el email y la password 
+     *       antes de buscarlo  en la colección de usuarios recibida desde el servicio RESTful.
+     * @todo Obtener los datos de la respuesta OK  del servicio RESTful 
+     *       en una colección para posteriormente buscar en esta última.       
+     * @todo Utilizar forEach o find para buscar el usuario que tiene el email y 
+     *       la password introducidos en la colección devuelta por el servicio RESTful.      
+     * @todo Utilizar User.fromJSON para encapsular los datos del User una vez encontrado 
+     *       en la colección de usuarios devuelta por el servicio RESTful.            
      * @param {Event} e
      */
     async handleSubmit(e) {
