@@ -1,3 +1,4 @@
+import { User } from './user.js'
 // URL del servicio REST de GlassFish (UserFacadeREST, @Path("entities.user")) que guarda el usuario en MySQL
 const SIGNUP_URL = '/Proyecto_Cliente/webresources/entities.user';
 // Página a la que se va tras registrarse
@@ -188,7 +189,8 @@ class SignUpFormController {
         try {
             await this.saveUser();
             this.showBox(this.successMessage, 'Cuenta creada. Te llevamos al inicio de sesión...');
-            setTimeout(() => { window.location.href = NEXT_PAGE; }, 1500);
+            setTimeout(() => { window.location.href = NEXT_PAGE; sessionStorage = 'email';}, 1500);
+            
         } catch (error) {
             this.showBox(this.formError, error.message);
             this.submitButton.disabled = false;
@@ -225,18 +227,7 @@ class SignUpFormController {
      */
     buildXml() {
         const value = (name) => this.form.elements[name].value.trim();
-        const data = {
-            firstName: value('firstName'),
-            lastName: value('lastName'),
-            middleInitial: value('middleInitial').toUpperCase(),
-            street: value('street'),
-            city: value('city'),
-            state: value('state'),
-            zip: value('zip'),
-            phone: value('phone'),
-            email: value('email'),
-            password: this.passwordInput.value      // sin recortar
-        };
+        User(user.id, user.firstName, user.lastName, user.middleInitial, user.street, user.city, user.state, user.zip, user.phone, user.email, user.password);
         const xml = document.implementation.createDocument(null, 'user');
         for (const [tag, text] of Object.entries(data)) {
             const node = xml.createElement(tag);
